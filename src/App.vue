@@ -1,6 +1,8 @@
 <template>
-  <router-view />
+  <div class="flex justify-center">
+    <router-view />
+  </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
+<script setup lang="ts"></script>

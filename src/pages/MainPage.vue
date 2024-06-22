@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import {articles} from "@/articles.ts";
-import {useRouter} from "vue-router";
-
-const router = useRouter();
-console.log(articles)
+import { articles } from "@/articles.ts";
+import ArticleLine from "@/components/ArticleLine.vue";
 </script>
 
 <template>
-  <div v-for="article in articles">
-    <button @click="router.push(article.slug)">{{article.title}}</button>
-  </div>
+  <ArticleLine :article="article" v-for="article in articles"> </ArticleLine>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
