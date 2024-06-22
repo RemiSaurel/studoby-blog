@@ -17,12 +17,20 @@ const startAnimation = () => {
     .add({
       targets: ".lines > *",
       width: "10rem",
-      duration: 2000,
+      duration: 1000,
+    })
+    .add({
+      targets: ".shuffle",
+      scale: 1.2,
     })
     .add({
       targets: ".start-reducer > *",
       width: "10rem",
-      duration: 2000,
+      duration: 1000,
+    })
+    .add({
+      targets: ".reducer",
+      scale: 1.2,
     })
     .add({
       duration: 1000,
@@ -65,24 +73,24 @@ const pythonCode =
   <div>
     <Title>Hadoop MapReduce</Title>
     <Code :code="initCode" language="javascript" />
-    <div class="flex gap-4 items-center">
+    <div class="flex items-center gap-4">
       <div class="flex flex-col gap-2">
-        <Square color="bg-red-2" text="Mapper 1" />
-        <Square color="bg-blue-2" text="Mapper 2" />
-        <Square color="bg-green-2" text="Mapper 3" />
+        <Square color="bg-red-2" text="M1" />
+        <Square color="bg-blue-2" text="M2" />
+        <Square color="bg-green-2" text="M3" />
       </div>
-      <div class="flex flex-col gap-12 lines w-40">
+      <div class="flex w-40 flex-col gap-12 lines">
         <Line class="top-14 rotate-20" color="bg-red-2" />
         <Line class="top-26" color="bg-blue-2" />
         <Line class="top-40 -rotate-20" color="bg-green-2" />
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 shuffle">
         <Square color="bg-amber-1" text="Shuffle & Sort" />
       </div>
-      <div class="start-reducer w-40">
+      <div class="w-40 start-reducer">
         <Line color="bg-amber-1" />
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 reducer">
         <Square color="bg-neutral-2" text="Reducer" />
       </div>
     </div>

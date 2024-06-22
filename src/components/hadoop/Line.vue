@@ -5,7 +5,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="w-0 h-2 rounded-lg" :class="[props.color]"></div>
+  <div class="h-2 w-0 rounded-lg" :class="[props.color]"></div>
 </template>
 
 <style scoped></style>

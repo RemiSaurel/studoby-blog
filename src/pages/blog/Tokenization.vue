@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import Square from "@/components/hadoop/Square.vue";
 import anime from "animejs/lib/anime.es.js";
 import { onMounted } from "vue";
-import Line from "@/components/hadoop/Line.vue";
 import Title from "@/components/blog/Title.vue";
 import Code from "@/components/blog/Code.vue";
 
@@ -49,7 +47,6 @@ const pythonCode =
 <template>
   <div>
     <Title>Tokenization</Title>
-
     <Code :code="pythonCode" language="python" />
   </div>
 </template>

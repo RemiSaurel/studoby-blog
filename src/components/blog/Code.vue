@@ -30,7 +30,7 @@ onMounted(() => {
   <div class="relative">
     <div v-html="content" class="text-md" />
     <button
-      class="absolute flex items-center justify-center top-2 right-2 border-0 bg-transparent rounded w-8 h-8 hover:bg-neutral-2 hover:cursor-pointer"
+      class="absolute top-2 right-2 flex h-8 w-8 items-center justify-center rounded border-0 bg-transparent hover:bg-neutral-2 hover:cursor-pointer"
       @click="copyToClipboard"
     >
       <img src="@/assets/copy.svg" alt="copy" />

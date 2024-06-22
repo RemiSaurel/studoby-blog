@@ -6,7 +6,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="w-fit p-2 rounded-lg py-6" :class="[props.color]">
+  <div
+    class="w-16 h-16 rounded-lg p-2 flex items-center justify-center text-center"
+    :class="[props.color]"
+  >
     {{ props.text }}
   </div>
 </template>
