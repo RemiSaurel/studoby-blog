@@ -21,7 +21,7 @@ router.beforeEach(async (to, _, next) => {
   const article = articles.find((article) => article.slug === to.params.slug);
   if (article) {
     const component = await import(
-      `@/pages/blog/${article.component}/${article.component}.vue`
+      `@/pages/blog/${article.component}.vue`
     );
     to.matched[0].components!.default = component.default;
   }
