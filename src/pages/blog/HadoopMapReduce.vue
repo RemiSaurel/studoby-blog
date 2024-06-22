@@ -72,9 +72,9 @@ const pythonCode =
         <Square color="bg-green-2" text="Mapper 3" />
       </div>
       <div class="flex flex-col gap-12 lines w-40">
-        <Line class="top-14" color="bg-red-2" :rotate="20" />
+        <Line class="top-14 rotate-20" color="bg-red-2" />
         <Line class="top-26" color="bg-blue-2" />
-        <Line class="top-40" color="bg-green-2" :rotate="-20" />
+        <Line class="top-40 -rotate-20" color="bg-green-2" />
       </div>
       <div class="flex flex-col gap-2">
         <Square color="bg-amber-1" text="Shuffle & Sort" />
