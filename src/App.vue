@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 flex max-w-2xl justify-center px-2 m-a">
+  <div class="mt-4 flex max-w-3xl justify-center px-2 m-a">
     <router-view class="w-full" />
   </div>
 </template>

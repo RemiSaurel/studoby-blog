@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {md} from "@/main.ts";
+import { onMounted, ref } from "vue";
+import { md } from "@/main.ts";
+
 const props = defineProps<{
   file: string;
   parent: string;
 }>();
 
 const content = ref<string>("");
-
-const copyToClipboard = () => {
-  navigator.clipboard.writeText(content.value);
-};
 
 onMounted(async () => {
   const el = await fetch(`./src/pages/blog/${props.parent}/${props.file}.md`);
@@ -19,14 +16,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative mt-8">
+    <div class="absolute -top-5 left-1 text-sm italic">
+      {{ props.file }}
+    </div>
     <div v-html="content" class="text-md" />
-    <button
-      class="absolute top-2 right-2 flex h-8 w-8 items-center justify-center rounded border-0 bg-transparent hover:bg-neutral-2 hover:cursor-pointer"
-      @click="copyToClipboard"
-    >
-      <img src="@/assets/copy.svg" alt="copy" />
-    </button>
   </div>
 </template>
 

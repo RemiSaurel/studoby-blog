@@ -8,6 +8,7 @@ import Paragraph from "@/components/blog/Paragraph.vue";
 import Circle from "@/components/shapes/Circle.vue";
 import InlineCode from "@/components/blog/InlineCode.vue";
 import Code from "@/components/blog/Code.vue";
+import AnimationContainer from "@/components/blog/AnimationContainer.vue";
 
 const component = "HadoopMapReduce";
 
@@ -22,7 +23,7 @@ const startMapperAnimation = () => {
     timeline
       .add({
         targets: ".circles > *",
-        translateX: 120,
+        translateX: "10rem",
         duration: 800,
         opacity: 1,
         delay: () => {
@@ -45,8 +46,17 @@ const startBigPictureAnimation = () => {
 
   timeline
     .add({
+      targets: ".circles-bp > *",
+      translateX: 40,
+      duration: 800,
+      opacity: 1,
+      delay: () => {
+        return Math.random() * 1000; // Random delay between 0 and 1000 milliseconds
+      },
+    })
+    .add({
       targets: ".lines > *",
-      width: "10rem",
+      width: "5rem",
       duration: 1000,
     })
     .add({
@@ -55,7 +65,7 @@ const startBigPictureAnimation = () => {
     })
     .add({
       targets: ".start-reducer > *",
-      width: "10rem",
+      width: "5rem",
       duration: 1000,
     })
     .add({
@@ -97,17 +107,16 @@ onMounted(() => {
       </template>
     </Paragraph>
     <Paragraph>
+      <template #title> 🧑‍💻 Code </template>
       <template #subtitle> 🚀 Mapper </template>
       <template #content>
-        <div
-          class="flex items-center justify-center gap-32 bg-white rounded-lg p-4"
-        >
+        <AnimationContainer legend="Lecture des fichiers par les Mapper">
           <div class="flex flex-col gap-2">
             <Square color="bg-slate-8 text-white" text="Fic.1" />
             <Square color="bg-slate-8 text-white" text="Fic.2" />
             <Square color="bg-slate-8 text-white" text="Fic.3" />
           </div>
-          <div class="flex flex-col gap-16 -ml-28 circles">
+          <div class="flex flex-col gap-16 circles w-35">
             <Circle color="bg-slate-7 text-white" />
             <Circle color="bg-slate-7 text-white" />
             <Circle color="bg-slate-7 text-white" />
@@ -117,7 +126,7 @@ onMounted(() => {
             <Square color="bg-blue-2" text="M2" />
             <Square color="bg-green-2" text="M3" />
           </div>
-        </div>
+        </AnimationContainer>
       </template>
     </Paragraph>
 
@@ -130,7 +139,8 @@ onMounted(() => {
         Notre petite boule représente des données d'un fichier que l'on souhaite
         traîter. Pour chaque fichier, 1 (ou plusieurs
         <InlineCode>Mapper</InlineCode>) sera instantié pour effectuer le
-        traîtement.
+        traîtement. Dans notre cas, nous n'avons qu'un seul
+        <InlineCode>Mapper</InlineCode> par fichier.
       </template>
     </Paragraph>
 
@@ -139,32 +149,141 @@ onMounted(() => {
         Mais quel traîtement va être effectué ? Et bien, comme dit précédemment,
         le <InlineCode>Mapper</InlineCode> va recevoir des données. Prenons un
         exemple concret : on souhaite compter le nombre de mots dans un fichier.
-        Voici le contenu d'un fichier :
-        <Code :parent="component" file="mapper"></Code>
+        Voici le contenu des 3 fichiers :
+        <Code :parent="component" file="file1"></Code>
+        <Code :parent="component" file="file2"></Code>
+        <Code :parent="component" file="file3"></Code>
+        À ce stade là, nous pouvons identifier ce que les différents
+        <InlineCode>Mapper</InlineCode> vont nous produire.
+        <br />
+        <InlineCode>M1 : (roi, 1), (Bonjour, 1)</InlineCode>
+        <br />
+        <InlineCode
+          >M2 : (Bonjour, 1), (le, 1), (roi, 1), (monde, 1)</InlineCode
+        >
+        <br />
+        <InlineCode>M3 : (Bonjour, 1), (le, 1), (monde, 1)</InlineCode>
       </template>
     </Paragraph>
 
-    <div class="flex items-center gap-4 bg-white rounded-lg p-4">
-      <div class="flex flex-col gap-2">
-        <Square color="bg-red-2" text="M1" />
-        <Square color="bg-blue-2" text="M2" />
-        <Square color="bg-green-2" text="M3" />
-      </div>
-      <div class="flex w-40 flex-col gap-12 lines">
-        <Line class="top-14 rotate-20" color="bg-red-2" />
-        <Line class="top-26" color="bg-blue-2" />
-        <Line class="top-40 -rotate-20" color="bg-green-2" />
-      </div>
-      <div class="flex flex-col gap-2 shuffle">
-        <Square color="bg-amber-1" text="Shuffle & Sort" />
-      </div>
-      <div class="w-40 start-reducer">
-        <Line color="bg-amber-1" />
-      </div>
-      <div class="flex flex-col gap-2 reducer">
-        <Square color="bg-neutral-2" text="Reducer" />
-      </div>
-    </div>
+    <Paragraph>
+      <template #content>
+        Concernant l'implantation en Java, rien de particulier. En utilisant les
+        éléments d'Hadoop (<InlineCode>LongWritable</InlineCode>,
+        <InlineCode>IntWritable</InlineCode>,
+        <InlineCode>Text</InlineCode> etc.), nous pouvons facilement implémenter
+        un <InlineCode>Mapper</InlineCode>.
+        <Code :parent="component" file="MapperJava"></Code>
+        Notez la constante à la ligne 2. Pour chaque mot, nous allons émettre un
+        couple <InlineCode>Clé-Valeur</InlineCode> avec la clé étant le mot et
+        la valeur étant 1. Nous écrivons cela grâce à la ligne 13 et la méthode
+        <InlineCode class="italic">write()</InlineCode>.
+      </template>
+    </Paragraph>
+
+    <Paragraph>
+      <template #subtitle> 🚀 Shuffle & Sort </template>
+      <template #content>
+        <AnimationContainer
+          legend="Sortie du Mapper et entrée du Shuffle & Sort"
+        >
+          <div class="flex flex-col gap-2">
+            <Square color="bg-red-2" text="M1" />
+            <Square color="bg-blue-2" text="M2" />
+            <Square color="bg-green-2" text="M3" />
+          </div>
+          <div class="flex flex-col gap-12 lines">
+            <Line class="top-14 rotate-20" color="bg-red-2" />
+            <Line class="top-26" color="bg-blue-2" />
+            <Line class="top-40 -rotate-20" color="bg-green-2" />
+          </div>
+          <div class="flex flex-col gap-2 shuffle">
+            <Square color="bg-amber-1" text="Shuffle & Sort" />
+          </div>
+        </AnimationContainer>
+        Maintenant que nous connaissons la sortie du
+        <InlineCode>Mapper</InlineCode>, nous allons passer à l'étape du
+        <InlineCode>Shuffle & Sort</InlineCode>.
+        <br />
+        Concrètement, le <InlineCode>Shuffle & Sort</InlineCode> va récupérer
+        les données de tous les <InlineCode>Mapper</InlineCode>, les regrouper
+        par clé et les trier.
+        <br />
+        Nous allons donc nous retrouver avec ces éléments là en sortie de cette
+        étape :
+        <br />
+        <InlineCode> (le, [1, 1])</InlineCode>
+        <br />
+        <InlineCode>(monde, [1, 1])</InlineCode>
+        <br />
+        <InlineCode> (roi, [1, 1]) </InlineCode>
+        <br />
+        <InlineCode>(Bonjour, [1, 1, 1])</InlineCode>
+      </template>
+    </Paragraph>
+
+    <Paragraph>
+      <template #subtitle> 🚀 Reducer </template>
+      <template #content>
+
+        <AnimationContainer
+          legend="Sortie du Shuffle & Sort et entrée du Reducer"
+        >
+          <div class="flex flex-col gap-2 shuffle">
+            <Square color="bg-amber-1" text="Shuffle & Sort" />
+          </div>
+          <div class="start-reducer">
+            <Line color="bg-amber-1" />
+          </div>
+          <div class="flex flex-col gap-2 reducer">
+            <Square color="bg-neutral-2" text="Reducer" />
+          </div>
+        </AnimationContainer>
+        Pour chaque <InlineCode>(clé, [valeurs...]</InlineCode>, le <InlineCode>Reducer</InlineCode> va appliquer un traitement. Ici, nous incrémentons de 1 pour chaque valeur, nous permettant ainsi d'avoir le nombre d'occurences de chaque mot.
+        <br>
+        Le code du <InlineCode>Reducer</InlineCode> est le suivant :
+        <Code :parent="component" file="ReducerJava"></Code>
+
+      </template>
+    </Paragraph>
+    <Paragraph>
+      <template #title>📸 Vue d'ensemble</template>
+      <template #content>
+        <AnimationContainer legend="Ensemble du traitement Map/Reduce">
+          <div class="flex flex-col gap-2">
+            <Square color="bg-slate-8 text-white" text="Fic.1" />
+            <Square color="bg-slate-8 text-white" text="Fic.2" />
+            <Square color="bg-slate-8 text-white" text="Fic.3" />
+          </div>
+          <div class="flex flex-col gap-16 circles-bp">
+            <Circle color="bg-slate-7 text-white" />
+            <Circle color="bg-slate-7 text-white" />
+            <Circle color="bg-slate-7 text-white" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <Square color="bg-red-2" text="M1" />
+            <Square color="bg-blue-2" text="M2" />
+            <Square color="bg-green-2" text="M3" />
+          </div>
+          <div class="flex flex-col gap-12 lines">
+            <Line class="top-14 rotate-20" color="bg-red-2" />
+            <Line class="top-26" color="bg-blue-2" />
+            <Line class="top-40 -rotate-20" color="bg-green-2" />
+          </div>
+          <div class="flex flex-col gap-2 shuffle">
+            <Square color="bg-amber-1" text="Shuffle & Sort" />
+          </div>
+          <div class="start-reducer">
+            <Line color="bg-amber-1" />
+          </div>
+          <div class="flex flex-col gap-2 reducer">
+            <Square color="bg-neutral-2" text="Reducer" />
+          </div>
+        </AnimationContainer>
+        MapReduce est un modèle puissant pour traiter de grandes quantités de données de manière distribuée.
+        Son implémentation est relativement simple et permet de facilement paralleliser des tâches.
+      </template>
+    </Paragraph>
   </div>
 </template>
 
