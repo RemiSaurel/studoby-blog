@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import Square from "@/components/shapes/Square.vue";
 import anime from "animejs/lib/anime.es.js";
-import { onMounted } from "vue";
 import Line from "@/components/shapes/Line.vue";
 import Title from "@/components/blog/Title.vue";
 import Paragraph from "@/components/blog/Paragraph.vue";
@@ -9,11 +9,12 @@ import Circle from "@/components/shapes/Circle.vue";
 import InlineCode from "@/components/blog/InlineCode.vue";
 import Code from "@/components/blog/Code.vue";
 import AnimationContainer from "@/components/blog/AnimationContainer.vue";
+import ToC from "@/components/blog/ToC.vue";
 
 const component = "HadoopMapReduce";
 
+// Function to start animations
 const startMapperAnimation = () => {
-  // Function to create the animation timeline
   const createTimeline = () => {
     const timeline = anime.timeline({
       loop: true,
@@ -26,9 +27,7 @@ const startMapperAnimation = () => {
         translateX: "10rem",
         duration: 800,
         opacity: 1,
-        delay: () => {
-          return Math.random() * 1000; // Random delay between 0 and 1000 milliseconds
-        },
+        delay: () => Math.random() * 1000,
       })
       .add({
         targets: ".circles > *",
@@ -37,11 +36,11 @@ const startMapperAnimation = () => {
   };
   createTimeline();
 };
+
 const startBigPictureAnimation = () => {
-  // Create a timeline
   const timeline = anime.timeline({
-    loop: true, // Enable looping
-    easing: "easeInOutSine", // Default easing for all animations
+    loop: true,
+    easing: "easeInOutSine",
   });
 
   timeline
@@ -50,9 +49,7 @@ const startBigPictureAnimation = () => {
       translateX: 40,
       duration: 800,
       opacity: 1,
-      delay: () => {
-        return Math.random() * 1000; // Random delay between 0 and 1000 milliseconds
-      },
+      delay: () => Math.random() * 1000,
     })
     .add({
       targets: ".lines > *",
@@ -77,6 +74,7 @@ const startBigPictureAnimation = () => {
     });
 };
 
+
 onMounted(() => {
   startMapperAnimation();
   startBigPictureAnimation();
@@ -85,10 +83,12 @@ onMounted(() => {
 
 <template>
   <div>
+    <ToC></ToC>
+    <!-- Content -->
     <Title>Hadoop MapReduce</Title>
     <Paragraph>
-      <template #title> 👋 Introduction </template>
-      <template #subtitle> 🧑‍💻 BigData </template>
+      <template #title>👋 Introduction</template>
+      <template #subtitle>🧑‍💻 BigData</template>
       <template #content>
         L'ère du Big Data a transformé notre manière de gérer et d'analyser les
         données. Pour traiter des volumes massifs de données, des outils
@@ -97,7 +97,7 @@ onMounted(() => {
       </template>
     </Paragraph>
     <Paragraph>
-      <template #subtitle> ♻️ MapReduce </template>
+      <template #subtitle>♻️ MapReduce</template>
       <template #content>
         MapReduce est un modèle de programmation développé par Google pour
         traiter de grandes quantités de données en parallèle sur des clusters de
@@ -107,8 +107,8 @@ onMounted(() => {
       </template>
     </Paragraph>
     <Paragraph>
-      <template #title> 🧑‍💻 Code </template>
-      <template #subtitle> 🚀 Mapper </template>
+      <template #title>🧑‍💻 Code</template>
+      <template #subtitle>🚀 Mapper</template>
       <template #content>
         <AnimationContainer legend="Lecture des fichiers par les Mapper">
           <div class="flex flex-col gap-2">
@@ -225,7 +225,6 @@ onMounted(() => {
     <Paragraph>
       <template #subtitle> 🚀 Reducer </template>
       <template #content>
-
         <AnimationContainer
           legend="Sortie du Shuffle & Sort et entrée du Reducer"
         >
@@ -239,11 +238,13 @@ onMounted(() => {
             <Square color="bg-neutral-2" text="Reducer" />
           </div>
         </AnimationContainer>
-        Pour chaque <InlineCode>(clé, [valeurs...]</InlineCode>, le <InlineCode>Reducer</InlineCode> va appliquer un traitement. Ici, nous incrémentons de 1 pour chaque valeur, nous permettant ainsi d'avoir le nombre d'occurences de chaque mot.
-        <br>
+        Pour chaque <InlineCode>(clé, [valeurs...]</InlineCode>, le
+        <InlineCode>Reducer</InlineCode> va appliquer un traitement. Ici, nous
+        incrémentons de 1 pour chaque valeur, nous permettant ainsi d'avoir le
+        nombre d'occurences de chaque mot.
+        <br />
         Le code du <InlineCode>Reducer</InlineCode> est le suivant :
         <Code :parent="component" file="ReducerJava"></Code>
-
       </template>
     </Paragraph>
     <Paragraph>
@@ -280,11 +281,10 @@ onMounted(() => {
             <Square color="bg-neutral-2" text="Reducer" />
           </div>
         </AnimationContainer>
-        MapReduce est un modèle puissant pour traiter de grandes quantités de données de manière distribuée.
-        Son implémentation est relativement simple et permet de facilement paralleliser des tâches.
+        MapReduce est un modèle puissant pour traiter de grandes quantités de
+        données de manière distribuée. Son implémentation est relativement
+        simple et permet de facilement paralleliser des tâches.
       </template>
     </Paragraph>
   </div>
 </template>
-
-<style scoped></style>
