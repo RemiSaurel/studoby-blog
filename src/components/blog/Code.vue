@@ -10,7 +10,7 @@ const props = defineProps<{
 const content = ref<string>("");
 
 onMounted(async () => {
-  const el = await fetch(`./src/pages/blog/${props.parent}/${props.file}.md`);
+  const el = await fetch(`./blog/${props.parent}/${props.file}.md`);
   content.value = md.render(await el.text());
 });
 </script>
