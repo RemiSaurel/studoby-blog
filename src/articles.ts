@@ -8,16 +8,6 @@ export const articles: Article[] = [
     time: "4min",
     description: "Définition et fonctionnement de MapReduce",
   },
-  {
-    title: "Tokenization",
-    component: "Tokenization",
-    slug: "tokenization",
-    tags: ["technique"],
-    date: "22-06-2024",
-    time: "4min",
-    description:
-      "Définition et fonctionnement de la tokenizationtokenizationtokenizationtokenization",
-  },
 ];
 
 export interface Article {
