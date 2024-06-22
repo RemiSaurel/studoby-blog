@@ -1,28 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { codeToHtml } from "shiki";
-
+import {onMounted, ref} from "vue";
+import {md} from "@/main.ts";
 const props = defineProps<{
-  code: string;
-  language: string;
+  file: string;
+  parent: string;
 }>();
 
 const content = ref<string>("");
 
-const loadHtml = () =>
-  codeToHtml(props.code, {
-    lang: "typescript",
-    theme: "catppuccin-latte",
-  }).then((html) => {
-    content.value = html;
-  });
-
 const copyToClipboard = () => {
-  navigator.clipboard.writeText(props.code);
+  navigator.clipboard.writeText(content.value);
 };
 
-onMounted(() => {
-  loadHtml();
+onMounted(async () => {
+  const el = await fetch(`./src/pages/blog/${props.parent}/${props.file}.md`);
+  content.value = md.render(await el.text());
 });
 </script>
 
