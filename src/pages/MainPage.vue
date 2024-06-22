@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { articles } from "@/articles.ts";
 import ArticleLine from "@/components/main/ArticleLine.vue";
+
+const sortedArticles = articles.sort((a, b) => {
+  const aDate = a.date.split("-").reverse().join("-");
+  const bDate = b.date.split("-").reverse().join("-");
+  return aDate > bDate ? -1 : 1;
+});
+
 </script>
 
 <template>
@@ -8,7 +15,7 @@ import ArticleLine from "@/components/main/ArticleLine.vue";
     class="flex flex-col-reverse items-center gap-1 md:flex-row md:items-start"
   >
     <div class="flex w-full flex-col items-center gap-4">
-      <ArticleLine :article="article" v-for="article in articles"></ArticleLine>
+      <ArticleLine :article="article" v-for="article in sortedArticles"></ArticleLine>
     </div>
     <div class="flex gap-2">
       <a href="https://github.com/RemiSaurel" target="_blank">

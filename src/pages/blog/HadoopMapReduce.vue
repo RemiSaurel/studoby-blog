@@ -10,6 +10,7 @@ import InlineCode from "@/components/blog/InlineCode.vue";
 import Code from "@/components/blog/Code.vue";
 import AnimationContainer from "@/components/blog/AnimationContainer.vue";
 import ToC from "@/components/blog/ToC.vue";
+import Block from "@/components/blog/Block.vue";
 
 const component = "HadoopMapReduce";
 
@@ -85,7 +86,7 @@ onMounted(() => {
   <div>
     <ToC></ToC>
     <!-- Content -->
-    <Title>Hadoop MapReduce</Title>
+    <Title>Hadoop : MapReduce</Title>
     <Paragraph>
       <template #title>👋 Introduction</template>
       <template #subtitle>🧑‍💻 BigData</template>
@@ -136,6 +137,9 @@ onMounted(() => {
           <Circle color="bg-slate-7 text-white" /> = représente une partie de
           fichier
         </div>
+        <Block title="Découpage" type="info">
+          Par défaut, un mapper traite 128 Mo de données. Si un fichier est plus grand, il sera découpé en plusieurs morceaux.
+        </Block>
         Notre petite boule représente des données d'un fichier que l'on souhaite
         traîter. Pour chaque fichier, 1 (ou plusieurs
         <InlineCode>Mapper</InlineCode>) sera instantié pour effectuer le
@@ -208,7 +212,9 @@ onMounted(() => {
         Concrètement, le <InlineCode>Shuffle & Sort</InlineCode> va récupérer
         les données de tous les <InlineCode>Mapper</InlineCode>, les regrouper
         par clé et les trier.
-        <br />
+        <Block title="Tri" type="warning">
+          Le tri ne s'effectue que sur les clés. Les valeurs, elles, ne sont pas triées.
+        </Block>
         Nous allons donc nous retrouver avec ces éléments là en sortie de cette
         étape :
         <br />
