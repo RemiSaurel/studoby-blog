@@ -85,7 +85,7 @@ onMounted(() => {
   <div>
     <ToC></ToC>
     <!-- Content -->
-    <Title>Hadoop MapReduce</Title>
+    <Title>Hadoop : MapReduce</Title>
     <Paragraph>
       <template #title>👋 Introduction</template>
       <template #subtitle>🧑‍💻 BigData</template>

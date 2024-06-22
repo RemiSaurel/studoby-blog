@@ -7,7 +7,7 @@ export const articles: Article[] = [
     date: "22-06-2024",
     time: "4min",
     description: "Définition et fonctionnement de MapReduce",
-  },
+  }
 ];
 
 export interface Article {
