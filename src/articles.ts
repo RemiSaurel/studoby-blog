@@ -3,7 +3,7 @@ export const articles: Article[] = [
     title: "Hadoop : MapReduce",
     component: "HadoopMapReduce",
     slug: "hadoop-map-reduce",
-    tags: ["bigdata", "technique"],
+    tags: ["BigData", "Technique"],
     date: "22-06-2024",
     time: "4min",
     description: "Définition et fonctionnement de MapReduce",
