@@ -15,7 +15,8 @@ export const articles: Article[] = [
     tags: ["technique"],
     date: "22-06-2024",
     time: "4min",
-    description: "Définition et fonctionnement de la tokenization",
+    description:
+      "Définition et fonctionnement de la tokenizationtokenizationtokenizationtokenization",
   },
 ];
 

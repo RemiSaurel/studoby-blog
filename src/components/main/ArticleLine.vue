@@ -10,25 +10,33 @@ const props = defineProps<{
 
 <template>
   <div
-    class="relative flex flex-col items-start gap-4 border-1 bg-slate-1 pl-4 pr-8 py-4 rounded-lg w-96 hover:cursor-pointer hover:bg-slate-1.5 shadow hover:shadow-lg transition duration-400 group"
+    class="relative flex w-4/5 flex-col flex-wrap items-start gap-3 rounded-lg border-solid py-4 pr-8 pl-4 shadow transition bg-slate-1 border-1.5 border-slate-1 duration-400 group hover:border-slate-4 hover:cursor-pointer"
     @click="router.push(article.slug)"
   >
-    <div class="flex gap-4 text-gray">
-      <span>{{ props.article.date }}</span>
-      <span>{{ props.article.time }}</span>
+    <div class="flex gap-4 text-gray text-sm">
+      <div class="flex items-center gap-1">
+        <img src="@/assets/calendar.svg" alt="calendar" class="h-4 w-4" />
+        <span>{{ props.article.date }}</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <img src="@/assets/clock.svg" alt="clock" class="h-4 w-4" />
+        <span>{{ props.article.time }}</span>
+      </div>
     </div>
 
     <div
-      class="absolute top-4 right-4 group-hover:rotate-45 group-hover:scale-110 transition duration-500"
+      class="absolute top-4 right-4 transition duration-500 group-hover:rotate-45 group-hover:scale-110"
     >
-      <img src="@/assets/arrow.svg" alt="arrow" class="w-6 h-6" />
+      <img src="@/assets/arrow.svg" alt="arrow" class="h-6 w-6" />
     </div>
 
     <span class="text-xl font-800">{{ props.article.title }}</span>
-    <div class="flex gap-2 -mt-2" v-if="props.article.tags">
+    <div class="-mt-2 flex flex-wrap gap-2" v-if="props.article.tags">
       <Tag :text="tag" v-for="tag in props.article.tags"> </Tag>
     </div>
-    <span class="text-gray">{{ props.article.description }}</span>
+    <span class="w-full truncate text-ellipsis text-gray mt-2">{{
+      props.article.description
+    }}</span>
   </div>
 </template>
 

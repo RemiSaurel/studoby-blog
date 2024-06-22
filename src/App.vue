@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center">
-    <router-view />
+  <div class="mt-4 flex max-w-2xl justify-center px-2 m-a">
+    <router-view class="w-full" />
   </div>
 </template>
 
