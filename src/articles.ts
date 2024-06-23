@@ -7,6 +7,15 @@ export const articles: Article[] = [
     date: "22-06-2024",
     time: "4min",
     description: "Définition et fonctionnement de MapReduce",
+  },
+  {
+    title: "Algo(s) du plus court chemin",
+    component: "PlusCourtChemin",
+    slug: "plus-court-chemin",
+    tags: ["Algo", "Technique"],
+    date: "23-06-2024",
+    time: "3min",
+    description: "Tour d'horizon des algorithmes de plus court chemin",
   }
 ];
 

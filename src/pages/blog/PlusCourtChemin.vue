@@ -2,27 +2,24 @@
 import ToC from "@/components/blog/ToC.vue";
 import Title from "@/components/blog/Title.vue";
 import Paragraph from "@/components/blog/Paragraph.vue";
-import Block from "@/components/blog/Block.vue";
+import Maze from "@/components/shortest-path/Maze.vue";
 </script>
 
 <template>
   <div>
     <ToC></ToC>
-    <Title>Title</Title>
+    <Title>Plus court chemin</Title>
     <Paragraph>
       <template #title>
-        Title
+        C'est quoi ?
       </template>
       <template #subtitle>
-        Subtitle
+        Algos
       </template>
       <template #content>
-        Content
+        <Maze />
       </template>
     </Paragraph>
-    <Block title="Titre" type="info">
-      Contenu
-    </Block>
   </div>
 </template>
 
