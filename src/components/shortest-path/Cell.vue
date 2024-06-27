@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 import {CellType} from "@/components/shortest-path/models.ts";
 
 const props = defineProps<{ type: CellType, onMouseDown: () => void, onMouseEnter: () => void }>();

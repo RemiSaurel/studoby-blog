@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import Cell from './Cell.vue';
 import { runDijkstra, runAStar } from './algorithms';
+import Button from "@/components/blog/Button.vue";
+import Select from "@/components/blog/Select.vue";
 
 const NB_ROWS = 13;
 const NB_COLS = 11;
@@ -83,21 +85,29 @@ const handleMouseUp = () => {
 };
 
 window.addEventListener('mouseup', handleMouseUp);
+
+const options = [
+  { value: 'dijkstra', text: 'Dijkstra' },
+  { value: 'aStar', text: 'A*' },
+];
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="controls">
-      <select v-model="selectedAlgorithm">
-        <option value="dijkstra">Dijkstra</option>
-        <option value="aStar">A*</option>
-      </select>
-      <label>
-        Duration
+  <div class="flex flex-col justify-center bg-slate-1 rounded border-solid border-slate-3 w-fit p-4 m-auto">
+    <div class="flex flex-col gap-2 items-start justify-center w-full rounded-lg">
+      <div class="flex items-center gap-2">
+        <Select :options="options" v-model="selectedAlgorithm" label="Choix de l'algo." />
+      </div>
+      <div>
+        <label>
+          Durée ({{ speed }}ms)
+        </label>
         <input type="range" v-model="speed" min="5" max="100" />
-      </label>
-      <button @click="runAlgorithm">Run</button>
-      <button @click="resetMaze" >Reset</button>
+      </div>
+      <div class="flex gap-2 w-full justify-between mb-2">
+        <Button class="w-full" @click="runAlgorithm" text="Lancer" type="success" size="lg"></Button>
+        <Button class="w-full" @click="resetMaze" text="Reset" type="danger" size="lg"></Button>
+      </div>
     </div>
     <div class="grid" v-if="MAZE_CONFIG" :style="`grid-template-columns: repeat(${NB_COLS}, 2rem); grid-template-rows: repeat(${NB_ROWS}, 2rem);`">
       <Cell v-for="(cell, i) in MAZE_CONFIG" :key="i" :type="cell" :onMouseDown="() => handleMouseDown(i)" :onMouseEnter="() => handleMouseEnter(i)" />
@@ -106,15 +116,5 @@ window.addEventListener('mouseup', handleMouseUp);
 </template>
 
 <style scoped>
-.grid {
-  display: grid;
-}
 
-.controls {
-  margin-bottom: 1rem;
-}
-
-label {
-  margin-left: 1rem;
-}
 </style>
