@@ -13,7 +13,7 @@ export const articles: Article[] = [
     component: "PlusCourtChemin",
     slug: "plus-court-chemin",
     tags: ["Algo", "Technique"],
-    date: "28-06-2024",
+    date: "07-07-2024",
     time: "3min",
     description: "Tour d'horizon des algorithmes de plus court chemin",
   }
