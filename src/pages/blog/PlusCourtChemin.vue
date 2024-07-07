@@ -66,11 +66,45 @@ const component = "ShortestPath";
       </template>
     </Paragraph>
     <Paragraph>
-      <template #title>
-        😎 Visualiser
+      <template #subtitle>
+        A*
       </template>
       <template #content>
-        <Maze />
+        L'algorithme <Highlight color="yellow">A*</Highlight> (prononcé "A star") est une amélioration de l'algorithme de Dijkstra, en ce sens qu'il utilise une heuristique pour guider sa recherche vers l'objectif.
+        <Code :parent="component" file="AStarPseudoCode" ></Code>
+        Source : <a href="https://fr.wikipedia.org/wiki/Algorithme_A*">A* (Wikipedia)</a>
+        <Block title="Note" type="info">
+          A* utilise une fonction de coût <InlineCode>f(n) = g(n) + h(n)</InlineCode>, où <InlineCode>g(n)</InlineCode> représente le coût pour atteindre le nœud <InlineCode>n</InlineCode> depuis le nœud de départ, et <InlineCode>h(n)</InlineCode> est une estimation du coût restant pour atteindre l'objectif depuis <InlineCode>n</InlineCode>.
+        </Block>
+        L'efficacité de A* dépend de la qualité de l'heuristique utilisée. Une heuristique admissible (qui ne surestime jamais le coût réel pour atteindre l'objectif) garantit que A* trouvera le chemin le plus court de manière optimale.
+      </template>
+    </Paragraph>
+
+    <Paragraph>
+      <template #title>
+        🔍 Comparaison
+      </template>
+      <template #content>
+        Il est important de comparer les performances de Dijkstra et A* dans différentes situations pour comprendre leurs avantages et inconvénients respectifs.
+        <Block title="Complexité" type="warning">
+          La complexité temporelle de Dijkstra est <InlineCode>O((V+E) \log V)</InlineCode>, où <InlineCode>V</InlineCode> est le nombre de sommets et <InlineCode>E</InlineCode> est le nombre d'arêtes.
+          Pour A*, la complexité temporelle dépend de la qualité de l'heuristique, mais dans le pire des cas, elle peut également être similaire à celle de Dijkstra.
+        </Block>
+        Vous pouvez tester les deux algorithmes sur le labyrinthe ci-dessous.
+        <Block title="Comment utiliser ? " type="info">
+          Vous pouvez changer les murs en cliquant sur les cases du labyrinthe. Le point de départ est la case <Highlight color="green">🟩 verte</Highlight> et l'objectif est la case <Highlight color="red">🟥 rouge</Highlight>. Vous pouvez également changer le départ et l'objectif en cliquant sur les cases correspondantes.
+        </Block>
+        <Maze class="mt-2" />
+      </template>
+    </Paragraph>
+
+    <Paragraph>
+      <template #title>
+        🏁 Conclusion
+      </template>
+      <template #content>
+        <Highlight color="yellow">Dijkstra</Highlight> offre une solution robuste et garantie pour trouver le plus court chemin, mais peut être lent pour des graphes très grands.
+        <Highlight color="yellow">A*</Highlight> apporte une dimension supplémentaire avec son heuristique, permettant des recherches plus rapides dans de nombreux cas, mais sa performance dépend fortement de la qualité de l'heuristique.
       </template>
     </Paragraph>
   </div>
