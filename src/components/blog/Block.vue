@@ -20,8 +20,9 @@ const emojis = {
 </script>
 
 <template>
-  <div class="flex flex-col h-fit my-4 rounded-lg px-4 py-3" :class="colors[props.type]">
+  <div class="h-fit my-4 rounded-lg px-4 py-3" :class="colors[props.type]">
     <span class="text-md font-bold mb-1"> {{emojis[props.type]}} {{ props.title }}</span>
+    <br>
     <slot></slot>
   </div>
 </template>

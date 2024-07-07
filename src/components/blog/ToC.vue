@@ -24,13 +24,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <aside class="hidden xl:block fixed top-8 left-8">
+  <aside class="hidden xl:block fixed top-8 left-8 max-w-[200px]  ">
     <div class="flex flex-col gap-2">
       <div v-for="(item, index) in tocItems" :key="index">
-        <div v-if="item.title !== ''" class="font-semibold mb-1 mt-2">
+        <div v-if="item.title !== ''" class="font-semibold mb-1 mt-2 truncate text-ellipsis">
           {{ item.title }}
         </div>
-        <div v-if="item.subtitle !== ''" class="text-sm ml-4">
+        <div v-if="item.subtitle !== ''" class="text-sm ml-4 truncate text-ellipsis">
           {{ item.subtitle }}
         </div>
       </div>
