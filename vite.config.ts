@@ -6,7 +6,7 @@ import path from "path";
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
   plugins: [vue(), UnoCSS()],
-  base: "/studoby-web/",
+  base: "/studoby-blog/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
