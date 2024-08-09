@@ -12,7 +12,7 @@ const routes = [
 ];
 
 export const router = createRouter({
-  history: createWebHashHistory("/studoby-web/"),
+  history: createWebHashHistory("/studoby-blog/"),
   routes,
 });
 
