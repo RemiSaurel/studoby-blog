@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import Square from "@/components/shapes/Square.vue";
-import anime from "animejs/lib/anime.es.js";
 import Line from "@/components/shapes/Line.vue";
 import Title from "@/components/blog/Title.vue";
 import Paragraph from "@/components/blog/Paragraph.vue";
@@ -11,6 +10,7 @@ import Code from "@/components/blog/Code.vue";
 import AnimationContainer from "@/components/blog/AnimationContainer.vue";
 import ToC from "@/components/blog/ToC.vue";
 import Block from "@/components/blog/Block.vue";
+import anime from "animejs";
 
 const component = "HadoopMapReduce";
 
@@ -75,7 +75,6 @@ const startBigPictureAnimation = () => {
     });
 };
 
-
 onMounted(() => {
   startMapperAnimation();
   startBigPictureAnimation();
@@ -138,7 +137,8 @@ onMounted(() => {
           fichier
         </div>
         <Block title="Découpage" type="info">
-          Par défaut, un mapper traite 128 Mo de données. Si un fichier est plus grand, il sera découpé en plusieurs morceaux.
+          Par défaut, un mapper traite 128 Mo de données. Si un fichier est plus
+          grand, il sera découpé en plusieurs morceaux.
         </Block>
         Notre petite boule représente des données d'un fichier que l'on souhaite
         traîter. Pour chaque fichier, 1 (ou plusieurs
@@ -213,7 +213,8 @@ onMounted(() => {
         les données de tous les <InlineCode>Mapper</InlineCode>, les regrouper
         par clé et les trier.
         <Block title="Tri" type="warning">
-          Le tri ne s'effectue que sur les clés. Les valeurs, elles, ne sont pas triées.
+          Le tri ne s'effectue que sur les clés. Les valeurs, elles, ne sont pas
+          triées.
         </Block>
         Nous allons donc nous retrouver avec ces éléments là en sortie de cette
         étape :

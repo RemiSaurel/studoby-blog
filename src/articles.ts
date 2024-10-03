@@ -1,13 +1,12 @@
 export const articles: Article[] = [
   {
     title: "memoire : un projet de flashcards",
-    component: "HadoopMapReduce",
+    component: "Memoire",
     slug: "memoire-projet-flashcards",
     tags: ["Projet", "Web", "Recherche"],
     date: "03-10-2024",
     time: "6min",
-    description:
-      "Une mini retrospective sur le projet memoire que j'ai initié suite à des limites trouvées dans les articles de recherche portant sur les flashcards",
+    description: "Retrospective sur une application de flashcards",
   },
   {
     title: "Hadoop : MapReduce",
