@@ -7,15 +7,19 @@ const sortedArticles = articles.sort((a, b) => {
   const bDate = b.date.split("-").reverse().join("-");
   return aDate > bDate ? -1 : 1;
 });
-
 </script>
 
 <template>
   <div
-    class="flex flex-col-reverse items-center gap-1 md:flex-row md:items-start"
+    class="flex flex-col-reverse items-center gap-1 mt-8 md:flex-row md:items-start"
   >
     <div class="flex w-full flex-col items-center gap-4">
-      <ArticleLine :article="article" v-for="article in sortedArticles"></ArticleLine>
+      <ArticleLine
+        :key="article.title"
+        :article="article"
+        v-for="(article, i) in sortedArticles"
+        :new="i === 0"
+      ></ArticleLine>
     </div>
     <div class="flex gap-2">
       <a href="https://github.com/RemiSaurel" target="_blank">

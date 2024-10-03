@@ -1,15 +1,15 @@
 <script setup lang="ts">
 const props = defineProps<{
-  color: 'red' | 'green' | 'orange' | 'blue' | 'purple' | 'yellow'
-}>()
+  color: "red" | "green" | "orange" | "blue" | "purple" | "yellow";
+}>();
 const colors = {
-  orange: 'bg-orange-1 ',
-  red: 'bg-red-1 ',
-  green: 'bg-green-1',
-  blue: 'bg-cyan-1',
-  purple: 'bg-purple-1',
-  yellow: 'bg-yellow-1',
-}
+  orange: "bg-orange-1",
+  red: "bg-red-1",
+  green: "bg-green-1",
+  blue: "bg-cyan-1",
+  purple: "bg-purple-1",
+  yellow: "bg-yellow-1",
+};
 </script>
 
 <template>
@@ -18,6 +18,4 @@ const colors = {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
